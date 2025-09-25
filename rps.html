@@ -1,0 +1,26 @@
+<a href="rps.html" class="btn btn-primary">Play RPS Game</a>
+<button onclick="play('rock')">Rock</button>
+<button onclick="play('paper')">Paper</button>
+<button onclick="play('scissors')">Scissors</button>
+<div id="result"></div>
+
+function play(userChoice) {
+    const choices = ['rock','paper','scissors'];
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+    let winner = '';
+
+    if(userChoice === computerChoice){
+        winner = "It's a tie!";
+    } else if(
+        (userChoice==='rock' && computerChoice==='scissors') ||
+        (userChoice==='paper' && computerChoice==='rock') ||
+        (userChoice==='scissors' && computerChoice==='paper')
+    ){
+        winner = "You win!";
+    } else {
+        winner = "Computer wins!";
+    }
+
+    document.getElementById('result').innerText = 
+        `You chose ${userChoice}, computer chose ${computerChoice}. ${winner}`;
+}
