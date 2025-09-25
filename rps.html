@@ -2,50 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rock Paper Scissors | Kouassi Moh</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;700&family=Raleway:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap"
     rel="stylesheet"
   />
 
   <!-- Vendor CSS -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
 
   <!-- Main CSS -->
   <link href="assets/css/main.css" rel="stylesheet" />
 
   <style>
-    .game-section {
-      padding: 80px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .game-container {
-      background: #fff;
-      padding: 40px;
+    /* RPS Game Styling */
+    #rps-game-container {
+      background: #3954a6;
+      padding: 30px;
       border-radius: 15px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       text-align: center;
+      margin-top: 50px;
     }
-    .btn-choice {
+    #rps-game-container button {
       margin: 10px;
       width: 100px;
     }
-    #result {
+    #rps-result {
       margin-top: 20px;
       font-weight: 600;
       font-size: 1.1rem;
     }
-    #scoreboard {
+    #rps-scoreboard {
       margin-top: 15px;
       font-weight: 500;
     }
@@ -55,7 +49,7 @@
 <body class="rps-page">
   <!-- Header -->
   <header id="header" class="header d-flex align-items-center light-background sticky-top">
-    <div class="container position-relative d-flex align-items-center justify-content-between">
+    <div class="container d-flex align-items-center justify-content-between">
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -76,76 +70,80 @@
 
   <!-- Main -->
   <main class="main">
-    <section id="rps-game" class="section game-section" data-aos="fade-up">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <div class="game-container">
-              <h2 class="mb-3">Rock Paper Scissors</h2>
-              <p>Click a button to play:</p>
-              <div class="d-flex justify-content-center mb-3">
-                <button class="btn btn-primary btn-choice" onclick="play('rock')">Rock</button>
-                <button class="btn btn-success btn-choice" onclick="play('paper')">Paper</button>
-                <button class="btn btn-warning btn-choice" onclick="play('scissors')">Scissors</button>
-              </div>
-              <div id="result" class="mb-2"></div>
-              <div id="scoreboard">You: <span id="userScore">0</span> | Computer: <span id="computerScore">0</span></div>
-            </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div id="rps-game-container">
+            <h2>Rock Paper Scissors</h2>
+            <p>Click a button to play:</p>
+            <button class="rps-btn">Rock</button>
+            <button class="rps-btn">Paper</button>
+            <button class="rps-btn">Scissors</button>
+            <div id="rps-result"></div>
+            <div id="rps-scoreboard">You: <span id="rps-userScore">0</span> | Computer: <span id="rps-computerScore">0</span></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </main>
 
   <!-- Footer -->
-  <footer id="footer" class="footer">
-    <div class="container">
-      <div class="copyright text-center">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">FolioOne</strong> All Rights Reserved</p>
+  <footer id="footer" class="footer mt-5">
+    <div class="container text-center">
+      <div class="copyright">
+        © <span>Copyright</span> <strong class="px-1 sitename">FolioOne</strong> All Rights Reserved
       </div>
-      <div class="social-links d-flex justify-content-center">
+      <div class="social-links d-flex justify-content-center mt-2">
         <a href="https://www.linkedin.com/in/kouassimoh/"><i class="bi bi-linkedin"></i></a>
         <a href="https://github.com/kouassimoh"><i class="bi bi-github"></i></a>
       </div>
-      <div class="credits">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></div>
+      <div class="credits mt-2">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></div>
     </div>
   </footer>
 
   <!-- Vendor JS -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <!-- main.js intentionally commented to prevent conflicts -->
   <script src="assets/js/main.js"></script>
 
-  <!-- RPS Game JS -->
+  <!-- RPS Game JS (isolated) -->
   <script>
-    let userScore = 0;
-    let computerScore = 0;
+    document.addEventListener('DOMContentLoaded', function() {
+      let userScore = 0;
+      let computerScore = 0;
 
-    function play(userChoice) {
-      const choices = ['rock', 'paper', 'scissors'];
-      const computerChoice = choices[Math.floor(Math.random() * 3)];
-      let winner = '';
+      const buttons = document.querySelectorAll('.rps-btn');
+      const resultDiv = document.getElementById('rps-result');
+      const userScoreSpan = document.getElementById('rps-userScore');
+      const computerScoreSpan = document.getElementById('rps-computerScore');
 
-      if(userChoice === computerChoice){
-        winner = "It's a tie!";
-      } else if (
-        (userChoice === 'rock' && computerChoice === 'scissors') ||
-        (userChoice === 'paper' && computerChoice === 'rock') ||
-        (userChoice === 'scissors' && computerChoice === 'paper')
-      ){
-        winner = "You win!";
-        userScore++;
-      } else {
-        winner = "Computer wins!";
-        computerScore++;
-      }
+      buttons.forEach(button => {
+        button.addEventListener('click', function() {
+          const userChoice = this.textContent.toLowerCase();
+          const choices = ['rock', 'paper', 'scissors'];
+          const computerChoice = choices[Math.floor(Math.random() * 3)];
+          let winner = '';
 
-      document.getElementById('result').innerText =
-        `You chose ${userChoice}, computer chose ${computerChoice}. ${winner}`;
-      document.getElementById('userScore').innerText = userScore;
-      document.getElementById('computerScore').innerText = computerScore;
-    }
+          if(userChoice === computerChoice){
+            winner = "It's a tie!";
+          } else if (
+            (userChoice === 'rock' && computerChoice === 'scissors') ||
+            (userChoice === 'paper' && computerChoice === 'rock') ||
+            (userChoice === 'scissors' && computerChoice === 'paper')
+          ){
+            winner = "You win!";
+            userScore++;
+          } else {
+            winner = "Computer wins!";
+            computerScore++;
+          }
+
+          resultDiv.innerText = `You chose ${userChoice}, computer chose ${computerChoice}. ${winner}`;
+          userScoreSpan.innerText = userScore;
+          computerScoreSpan.innerText = computerScore;
+        });
+      });
+    });
   </script>
 </body>
 </html>
