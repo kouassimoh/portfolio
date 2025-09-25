@@ -39,7 +39,7 @@
       color: #f0f4f8;
     }
     #rps-game-container h2 {
-      color: #00c2ff;
+      color: #ffffff;
       font-weight: 700;
     }
     #rps-game-container p {
@@ -49,21 +49,21 @@
       margin: 10px;
       width: 110px;
       font-weight: 600;
-      color: #fff;
+      color: #fff9f9;
       border: none;
       border-radius: 8px;
       padding: 10px 15px;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .rps-btn.rock {
-      background: #ff4d4d;
+      background:#28a745;
     }
     .rps-btn.paper {
-      background: #00c2ff;
+      background: #28a745;
     }
     .rps-btn.scissors {
-      background: #ffc107;
-      color: #000;
+      background: #28a745;
+      color: #ffffff;
     }
     .rps-btn:hover {
       transform: scale(1.1);
@@ -136,7 +136,7 @@
       <div class="copyright text-center">
         <p>
           © <span>Copyright</span>
-          <strong class="px-1 sitename">Kouassi Moh</strong>
+          <strong class="px-1 sitename">FolioOne</strong>
           <span>All Rights Reserved</span>
         </p>
       </div>
@@ -178,16 +178,16 @@
           let winner = '';
 
           if (userChoice === computerChoice) {
-            winner = "It's a tie!";
+            winner = "🤝It's a tie!";
           } else if (
             (userChoice === 'rock' && computerChoice === 'scissors') ||
             (userChoice === 'paper' && computerChoice === 'rock') ||
             (userChoice === 'scissors' && computerChoice === 'paper')
           ) {
-            winner = "You win!";
+            winner = "✅You win!";
             userScore++;
           } else {
-            winner = "Computer wins!";
+            winner = "❌Computer wins!";
             computerScore++;
           }
 
