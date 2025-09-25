@@ -33,65 +33,78 @@
       background: #122731;
       padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       text-align: center;
       margin-top: 50px;
+      color: #f0f4f8;
     }
-    #rps-game-container button {
+    #rps-game-container h2 {
+      color: #00c2ff;
+      font-weight: 700;
+    }
+    #rps-game-container p {
+      color: #d1e4ec;
+    }
+    .rps-btn {
       margin: 10px;
-      width: 100px;
+      width: 110px;
+      font-weight: 600;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .rps-btn.rock {
+      background: #ff4d4d;
+    }
+    .rps-btn.paper {
+      background: #00c2ff;
+    }
+    .rps-btn.scissors {
+      background: #ffc107;
+      color: #000;
+    }
+    .rps-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     }
     #rps-result {
       margin-top: 20px;
       font-weight: 600;
       font-size: 1.1rem;
+      color: #f8f9fa;
     }
     #rps-scoreboard {
       margin-top: 15px;
       font-weight: 500;
-    }
-    .rps-btn:hover {
-      transform: scale(1.1);
-      transition: 0.2s;
+      color: #d1e4ec;
     }
   </style>
 </head>
 
-  <body class="contact-page">
-    <header
-      id="header"
-      class="header d-flex align-items-center light-background sticky-top"
-    >
-      <div
-        class="container position-relative d-flex align-items-center justify-content-between"
-      >
-        <!-- <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-      <img src="assets/img/logo.webp" alt="">
-      <h1 class="sitename">FolioOne</h1> 
-    </a> -->
+<body class="projects-page">
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center light-background sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="rps.html" class="active">RPS Game</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
 
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="resume.html">Resume</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="rps.html.html" class="active">RPS Game</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-
-        <div class="header-social-links">
-          <a href="https://www.linkedin.com/in/kouassimoh/"
-            ><i class="bi bi-linkedin"></i
-          ></a>
-          <a href="https://github.com/kouassimoh"
-            ><i class="bi bi-github"></i
-          ></a>
-        </div>
+      <div class="header-social-links">
+        <a href="https://www.linkedin.com/in/kouassimoh/"><i class="bi bi-linkedin"></i></a>
+        <a href="https://github.com/kouassimoh"><i class="bi bi-github"></i></a>
       </div>
-    </header>
+    </div>
+  </header>
 
   <!-- Main -->
   <main class="main">
@@ -99,14 +112,17 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
-            <div id="rps-game-container">
+            <div id="rps-game-container" data-aos="fade-up">
               <h2>Rock Paper Scissors</h2>
               <p>Click a button to play:</p>
-              <button class="rps-btn btn btn-success">Rock</button>
-              <button class="rps-btn btn btn-success">Paper</button>
-              <button class="rps-btn btn btn-success">Scissors</button>
+              <button class="rps-btn rock">Rock</button>
+              <button class="rps-btn paper">Paper</button>
+              <button class="rps-btn scissors">Scissors</button>
               <div id="rps-result"></div>
-              <div id="rps-scoreboard">You: <span id="rps-userScore">0</span> | Computer: <span id="rps-computerScore">0</span></div>
+              <div id="rps-scoreboard">
+                You: <span id="rps-userScore">0</span> | Computer:
+                <span id="rps-computerScore">0</span>
+              </div>
             </div>
           </div>
         </div>
@@ -118,21 +134,30 @@
   <footer id="footer" class="footer">
     <div class="container">
       <div class="copyright text-center">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">FolioOne</strong> All Rights Reserved</p>
+        <p>
+          © <span>Copyright</span>
+          <strong class="px-1 sitename">Kouassi Moh</strong>
+          <span>All Rights Reserved</span>
+        </p>
       </div>
       <div class="social-links d-flex justify-content-center">
         <a href="https://www.linkedin.com/in/kouassimoh/"><i class="bi bi-linkedin"></i></a>
         <a href="https://github.com/kouassimoh"><i class="bi bi-github"></i></a>
       </div>
-      <div class="credits">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></div>
     </div>
   </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/js/main.js"></script>
 
   <!-- RPS Game JS -->
   <script>
@@ -152,13 +177,13 @@
           const computerChoice = choices[Math.floor(Math.random() * 3)];
           let winner = '';
 
-          if(userChoice === computerChoice){
+          if (userChoice === computerChoice) {
             winner = "It's a tie!";
           } else if (
             (userChoice === 'rock' && computerChoice === 'scissors') ||
             (userChoice === 'paper' && computerChoice === 'rock') ||
             (userChoice === 'scissors' && computerChoice === 'paper')
-          ){
+          ) {
             winner = "You win!";
             userScore++;
           } else {
